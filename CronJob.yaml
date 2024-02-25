@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: daemonset-updater
+spec:
+  schedule: "0 2 * * *" # Runs daily at 2:00 AM
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: updater
+              image: bsantacruz/alpine-kubectl
+              volumeMounts:
+                - name: script
+                  mountPath: /scripts
+              command: ["/bin/bash", "/scripts/update-daemonset.sh"]
+          volumes:
+            - name: script
+              configMap:
+                name: update-script
+          restartPolicy: OnFailure
