@@ -3,3 +3,4 @@ daemonset*.yaml
 VersionChecker.py
 *.drawio
 *.drawio.*
+.DS_Store
