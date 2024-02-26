@@ -4,7 +4,7 @@ A project to develop a solution to update automatically the Prisma Cloud Daemons
 
 **Note: Fork or clone this project in your own environment to start the lab.**
 
-In this repo it's assumed that you have any earlier version of Prisma Cloud Defender (Daemonset) deployed in your K8S Cluster.
+In this repo it's assumed that you have any earlier version of Prisma Cloud Defender (Daemonset) deployed in your K8S Cluster. In this use case we use _'twistlock'_ namespace like in defender YAML template (by default).
 
 ## Solution Architecture
 
@@ -59,11 +59,13 @@ Note: If you want you can use the pre-builded docker image located in DockerHub 
 
 3. Create the ConfigMap resource, this contains data script to execute by the Cronjob.
 
-- Open `./DefenderUpdater.sh` file and set the variables DAEMONSET_NAME & CONTAINER_NAME with your values, copy all content file.
+- Open `./DefenderUpdater.sh` file and set the variables DAEMONSET_NAME & CONTAINER_NAME with your values (first command below), copy all content file.
 - Replace ConfigMap data section with the content copied above, adjust the format.
 - To avoid error give execution permissions to `./DefenderUpdater.sh` script file.
 
   ```
+  # Find defender resources created in twistlock namespace:
+  kubectl get all -n twistlock
   # Give execution permissions:
   sudo chmod +x DefenderUpdater.sh
   # Create ConfigMap from yaml template:
@@ -111,7 +113,7 @@ Note: If you want you can use the pre-builded docker image located in DockerHub 
 8. To view defender daemonset annotations & events. Take into account that daemonset has **'kubernetes.io/change-cause'** annotation with time of execution.
 
    ```
-   kubectl describe daemonset defender-updater -n twistlock
+   kubectl describe daemonset twistlock-defender-ds -n twistlock
    ```
 
 ### ¡Be careful if you change resources names & content of scripts!
