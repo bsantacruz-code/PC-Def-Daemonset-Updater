@@ -7,7 +7,7 @@ metadata:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: defender-udpater-role
+  name: defender-updater-role
 rules:
   - apiGroups: ["apps"]
     resources: ["daemonsets"]
@@ -16,12 +16,12 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: defender-udpater-rolebinding
+  name: defender-updater-rolebinding
 subjects:
   - kind: ServiceAccount
     name: defender-updater-sa
     namespace: twistlock
 roleRef:
   kind: Role
-  name: defender-udpater-role
+  name: defender-updater-role
   apiGroup: rbac.authorization.k8s.io
