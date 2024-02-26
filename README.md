@@ -14,6 +14,8 @@ In this solution it's used K8S core resources like: CronJob, ServiceAccount, Rol
 
 ## Building & Publishing Docker Image
 
+**Disclaimer: You can omit this steps and directly use the pre-created docker image "bsantacruz/alpine-kubectl:1.0" located in Docker Hub.**
+
 1. Open Terminal and Go to the directory where you clone this repository.
 
 2. Build the Docker Image with **kubectl** tool to execute the Daemonset update.
@@ -44,6 +46,8 @@ In this solution it's used K8S core resources like: CronJob, ServiceAccount, Rol
 Note: If you want you can use the pre-builded docker image located in DockerHub repo: bsantacruz/alpine-kubectl
 
 ## Deploying Updater into K8S Cluster
+
+**Disclaimer: Take into account that CronJob schedule is given in UTC time, adjust that parameter**
 
 1. Connect to your cluster and create the RBAC resources needed to interact with daemonsets in 'twistlock' namespace.
 
