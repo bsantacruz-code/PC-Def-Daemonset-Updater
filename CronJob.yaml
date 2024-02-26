@@ -1,22 +1,25 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: daemonset-updater
+  name: defender-updater
+  namespace: twistlock
 spec:
-  schedule: "0 2 * * *" # Runs daily at 2:00 AM
+  schedule: "0 20 * * *" # Runs daily at 7:00 PM
   jobTemplate:
     spec:
       template:
         spec:
+          serviceAccountName: defender-updater-sa
           containers:
             - name: updater
-              image: bsantacruz/alpine-kubectl
+              image: bsantacruz/alpine-kubectl:1.0
               volumeMounts:
                 - name: script
                   mountPath: /scripts
-              command: ["/bin/bash", "/scripts/update-daemonset.sh"]
+                  readOnly: false
+              command: ["/bin/sh", "/scripts/DefenderUpdater.sh"]
           volumes:
             - name: script
               configMap:
-                name: update-script
+                name: defender-updater-script-configmap
           restartPolicy: OnFailure
