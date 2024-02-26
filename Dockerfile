@@ -1,6 +1,9 @@
 # Use Alpine as the base image
 FROM alpine:latest
 
+# Include bash binary
+RUN apk add --no-cache bash
+
 # Set the kubectl version to download
 ENV KUBECTL_VERSION=v1.28.4
 

@@ -1,0 +1,5 @@
+Defender.yaml
+daemonset*.yaml
+VersionChecker.py
+*.drawio
+*.drawio.*

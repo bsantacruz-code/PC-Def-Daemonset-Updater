@@ -4,7 +4,7 @@ metadata:
   name: defender-updater
   namespace: twistlock
 spec:
-  schedule: "0 20 * * *" # Runs daily at 7:00 PM
+  schedule: "0 18 * * *" # Runs daily at 6:00 PM
   jobTemplate:
     spec:
       template:

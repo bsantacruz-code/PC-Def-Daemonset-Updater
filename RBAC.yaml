@@ -5,23 +5,23 @@ metadata:
   namespace: twistlock
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
+kind: Role
 metadata:
-  name: defender-udpater-clusterrole
+  name: defender-udpater-role
 rules:
   - apiGroups: ["apps"]
     resources: ["daemonsets"]
     verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
+kind: RoleBinding
 metadata:
-  name: defender-udpater-clusterrolebinding
+  name: defender-udpater-rolebinding
 subjects:
   - kind: ServiceAccount
-    name: defender-udpater-sa
+    name: defender-updater-sa
     namespace: twistlock
 roleRef:
-  kind: ClusterRole
-  name: cluster-admin
+  kind: Role
+  name: defender-udpater-role
   apiGroup: rbac.authorization.k8s.io
