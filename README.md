@@ -2,6 +2,12 @@
 
 A project to develop a solution to update automatically the Prisma Cloud Daemonset Defender
 
+## Opportunity:
+
+When you are trying to upgrade the Prisma Cloud Daemonset Defender you need gain access to the cluster, however share either your cluster kubeconfig file or credentials may involve unneeded risks, there's an opportunity to provide a solution to manage the upgrade process from inside the cluster in scheduled way. A quick look for the flow is:
+
+![FlowDiagram](./images/Flow%20Diagram.jpg)
+
 **Note: Fork or clone this project in your own environment to start the lab.**
 
 In this repo it's assumed that you have any earlier version of Prisma Cloud Defender (Daemonset) deployed in your K8S Cluster. In this use case we use _'twistlock'_ namespace like in defender YAML template (by default).

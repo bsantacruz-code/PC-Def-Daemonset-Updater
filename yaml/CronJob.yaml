@@ -17,6 +17,17 @@ spec:
                 - name: script
                   mountPath: /scripts
                   readOnly: false
+              env:
+                - name: AK
+                  valueFrom:
+                    secretKeyRef:
+                      name: prisma-secrets
+                      key: AK
+                - name: SK
+                  valueFrom:
+                    secretKeyRef:
+                      name: prisma-secrets
+                      key: SK
               command: ["/bin/sh", "/scripts/DefenderUpdater.sh"]
           volumes:
             - name: script

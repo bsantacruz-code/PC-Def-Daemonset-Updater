@@ -12,6 +12,12 @@ rules:
   - apiGroups: ["apps"]
     resources: ["daemonsets"]
     verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: [""]
+    resources: ["configmaps", "secrets"]
+    verbs: ["get", "list", "create", "update", "patch", "delete"]
+  - apiGroups: ["rbac.authorization.k8s.io"]
+    resources: ["roles", "rolebindings"]
+    verbs: ["get", "list", "create", "update", "patch", "delete"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -25,3 +31,13 @@ roleRef:
   kind: Role
   name: defender-updater-role
   apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: prisma-secrets
+  namespace: twistlock
+type: Opaque
+data:
+  AK: ZWRjODc3ZjQtNjEzZC00NWFmLTg5Y2UtMjhlNzRmNWQ0OTU3Cg==
+  SK: Sy9ubjJ3bW1vd2xrMFVsbVJPQkJYWUhMSnV3PQo=
