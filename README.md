@@ -1,14 +1,14 @@
-# PC-Def-Daemonset-Updater
+# PC-Def-Daemonset-Updater 💡
 
 A project to provide a solution to update automatically the Prisma Cloud Daemonset Defender without need to share your kubeconfig file.
 
-## Opportunity
+## Opportunity 🎯
 
 When you are trying to upgrade the Prisma Cloud Daemonset Defender you need gain access to the cluster, however share either your cluster kubeconfig file or credentials may involve unneeded risks, there's an opportunity to provide a solution to manage the upgrade process from inside the cluster in scheduled way. A quick look for the flow is:
 
 ![FlowDiagram](./images/Flow'sDiagram.jpg)
 
-## Solution Architecture
+## Solution Architecture 📌
 
 This solution assumes that you have deployed any earlier version of Prisma Cloud Defender (Daemonset) running in your K8S Cluster. In this use case we'll use _'twistlock'_ namespace, same as default defender template namespace.
 
@@ -33,13 +33,13 @@ The tree directory for project is:
 
 **Note: Fork or clone this project in your own environment to start.**
 
-## Prerequisites
+## Prerequisites 🔒
 
 - Prisma Cloud CWP API Credentials - base64 encoded.
 - Kubectl client connection to your clusters.
 - For or clone this project repository.
 
-## Building & Publishing Docker Image (Optional)
+## Building & Publishing Docker Image (Optional) ❔
 
 **Disclaimer 1:** You can omit this steps and directly use the pre-created docker image "bsantacruz/alpine-kubectl:2.1" located in Docker Hub.
 
@@ -70,7 +70,7 @@ The tree directory for project is:
 
 **Note:** If you want you can use the pre-builded docker image located in DockerHub repo: **bsantacruz/alpine-kubectl**
 
-## Deploying Updater into K8S Cluster
+## Deploying Updater into K8S Cluster ✳️
 
 Before deploy the resources you need to modify it with your own values
 
@@ -113,7 +113,7 @@ Before deploy the resources you need to modify it with your own values
    kubectl create job --from=cronjob/defender-updater defender-updater-job -n twistlock
    ```
 
-## Viewing results & logs
+## Viewing results & logs ✔️
 
 1. To monitor & view logs of the executions you can locate the job and view status which must be "completed"
 
@@ -140,3 +140,5 @@ Before deploy the resources you need to modify it with your own values
    ```
 
 ### ¡Be careful if you change resources names & content of scripts!
+
+Created & maintained by @bsantacruz-code
