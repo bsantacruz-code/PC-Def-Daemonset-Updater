@@ -12,7 +12,7 @@ spec:
           serviceAccountName: defender-updater-sa
           containers:
             - name: updater
-              image: bsantacruz/alpine-kubectl:1.0
+              image: bsantacruz/alpine-kubectl:2.0
               volumeMounts:
                 - name: script
                   mountPath: /scripts

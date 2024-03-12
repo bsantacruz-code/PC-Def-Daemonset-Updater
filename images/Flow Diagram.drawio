@@ -1,0 +1,90 @@
+<mxfile host="Electron" modified="2024-03-08T00:04:36.807Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.1.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="QChu5nHQNSqcETOsrA87" version="23.1.5" type="device">
+  <diagram name="Page-1" id="keqmHgBlxp_UfgcWt8uq">
+    <mxGraphModel dx="1259" dy="701" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="9xiRyUTBKhDjXZEKI8Sx-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="9xiRyUTBKhDjXZEKI8Sx-1" target="9xiRyUTBKhDjXZEKI8Sx-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9xiRyUTBKhDjXZEKI8Sx-1" value="Start" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="400" y="80" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="9xiRyUTBKhDjXZEKI8Sx-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="9xiRyUTBKhDjXZEKI8Sx-2" target="9xiRyUTBKhDjXZEKI8Sx-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9xiRyUTBKhDjXZEKI8Sx-6" value="No" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9xiRyUTBKhDjXZEKI8Sx-5">
+          <mxGeometry x="-0.2833" relative="1" as="geometry">
+            <mxPoint x="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9xiRyUTBKhDjXZEKI8Sx-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="9xiRyUTBKhDjXZEKI8Sx-2" target="9xiRyUTBKhDjXZEKI8Sx-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9xiRyUTBKhDjXZEKI8Sx-9" value="Yes" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9xiRyUTBKhDjXZEKI8Sx-8">
+          <mxGeometry x="-0.325" relative="1" as="geometry">
+            <mxPoint y="3" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9xiRyUTBKhDjXZEKI8Sx-2" value="Do you want to automate &lt;br&gt;the Daemonset defender &lt;br&gt;upgrade process?" style="rhombus;whiteSpace=wrap;html=1;verticalAlign=middle;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="330" y="160" width="220" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="9xiRyUTBKhDjXZEKI8Sx-4" value="Manual Update" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="127" y="195" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="9xiRyUTBKhDjXZEKI8Sx-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="9xiRyUTBKhDjXZEKI8Sx-7" target="9xiRyUTBKhDjXZEKI8Sx-11">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="502" y="390" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9xiRyUTBKhDjXZEKI8Sx-13" value="Yes" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9xiRyUTBKhDjXZEKI8Sx-12">
+          <mxGeometry x="-0.0737" y="3" relative="1" as="geometry">
+            <mxPoint x="-6" y="3" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9xiRyUTBKhDjXZEKI8Sx-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="9xiRyUTBKhDjXZEKI8Sx-7" target="9xiRyUTBKhDjXZEKI8Sx-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9xiRyUTBKhDjXZEKI8Sx-18" value="No" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9xiRyUTBKhDjXZEKI8Sx-17">
+          <mxGeometry x="-0.156" relative="1" as="geometry">
+            <mxPoint x="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9xiRyUTBKhDjXZEKI8Sx-7" value="Are you willing to share&lt;br&gt;the kubeconfig file?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="345" y="350" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="9xiRyUTBKhDjXZEKI8Sx-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="9xiRyUTBKhDjXZEKI8Sx-11" target="9xiRyUTBKhDjXZEKI8Sx-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9xiRyUTBKhDjXZEKI8Sx-11" value="Use Prisma Cloud Daemonsets Auto-defend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="615.5" y="440" width="153" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="9xiRyUTBKhDjXZEKI8Sx-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="9xiRyUTBKhDjXZEKI8Sx-14" target="9xiRyUTBKhDjXZEKI8Sx-21">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="690" y="655" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9xiRyUTBKhDjXZEKI8Sx-14" value="Create the kubeconfig credential into Prisma Cloud" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;arcSize=14;" vertex="1" parent="1">
+          <mxGeometry x="607" y="542" width="170" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="9xiRyUTBKhDjXZEKI8Sx-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="9xiRyUTBKhDjXZEKI8Sx-16" target="9xiRyUTBKhDjXZEKI8Sx-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9xiRyUTBKhDjXZEKI8Sx-16" value="Use CronJob to trigger upgrading Daemonset defender process" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="116.5" y="440" width="153" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="9xiRyUTBKhDjXZEKI8Sx-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="9xiRyUTBKhDjXZEKI8Sx-19" target="9xiRyUTBKhDjXZEKI8Sx-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9xiRyUTBKhDjXZEKI8Sx-19" value="Create the CronJob resources inside cluster" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="117" y="550" width="152" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="9xiRyUTBKhDjXZEKI8Sx-21" value="Verify Upgrading in Prisma Cloud console" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="360" y="630" width="160" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

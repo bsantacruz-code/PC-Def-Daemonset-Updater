@@ -1,118 +1,131 @@
 # PC-Def-Daemonset-Updater
 
-A project to develop a solution to update automatically the Prisma Cloud Daemonset Defender
+A project to provide a solution to update automatically the Prisma Cloud Daemonset Defender without need to share your kubeconfig file.
 
-## Opportunity:
+## Opportunity
 
 When you are trying to upgrade the Prisma Cloud Daemonset Defender you need gain access to the cluster, however share either your cluster kubeconfig file or credentials may involve unneeded risks, there's an opportunity to provide a solution to manage the upgrade process from inside the cluster in scheduled way. A quick look for the flow is:
 
-![FlowDiagram](./images/Flow%20Diagram.jpg)
-
-**Note: Fork or clone this project in your own environment to start the lab.**
-
-In this repo it's assumed that you have any earlier version of Prisma Cloud Defender (Daemonset) deployed in your K8S Cluster. In this use case we use _'twistlock'_ namespace like in defender YAML template (by default).
+![FlowDiagram](./images/Flow'sDiagram.jpg)
 
 ## Solution Architecture
+
+This solution assumes that you have deployed any earlier version of Prisma Cloud Defender (Daemonset) running in your K8S Cluster. In this use case we'll use _'twistlock'_ namespace, same as default defender template namespace.
 
 In this solution it's used K8S core resources like: CronJob, ServiceAccount, Role, RoleBinding, Volume, ConfigMap, etc... A brief look of the solution is:
 
 ![DefenderUpdater Diagram](./images/Solution'sDiagram.jpg)
 
-## Building & Publishing Docker Image
+The tree directory for project is:
 
-**Disclaimer: You can omit this steps and directly use the pre-created docker image "bsantacruz/alpine-kubectl:1.0" located in Docker Hub.**
+      .
+      ├── Dockerfile                      # Docker Image.
+      ├── README.md                       # Project's Docs.
+      ├── ./images
+      │   ├── Flow Diagram.jpg            # Opportunity Flow.
+      │   └── Solution'sDiagram.jpg       # Solution Proposal.
+      ├── ./scripts
+      │   └── DefenderUpdater.sh          # Raw script for automation.
+      └── ./yaml
+         ├── ConfigMap.yaml               # ConfigMap to provide data script.
+         ├── CronJob.yaml                 # CronJob to execute the configmap script.
+         └── RBAC.yaml                    # Secrets & RBAC required by automation.
+
+**Note: Fork or clone this project in your own environment to start.**
+
+## Prerequisites
+
+- Prisma Cloud CWP API Credentials - base64 encoded.
+- Kubectl client connection to your clusters.
+- For or clone this project repository.
+
+## Building & Publishing Docker Image (Optional)
+
+**Disclaimer 1:** You can omit this steps and directly use the pre-created docker image "bsantacruz/alpine-kubectl:2.1" located in Docker Hub.
 
 1. Open Terminal and Go to the directory where you clone this repository.
 
-2. Build the Docker Image with **kubectl** tool to execute the Daemonset update.
+2. Build Docker Image & verify it's contents.
 
    ```
    docker build -t alpine-kubectl:1.0 .
+   docker run alpine-kubectl:1.0 /bin/sh
+   kubectl version --client
+   curl --version
+   bash --version
+   jq --version
+   ls -l
+   exit
    ```
 
-3. Verify that docker image contains kubectl tool installed.
-
-   ```
-   docker run alpine-kubectl:1.0 version --client
-   ```
-
-4. Login to Docker Hub with your credentials.
+3. Login to Docker Hub & publish your Docker Image.
 
    ```
    docker login
-   ```
-
-5. Publish your Docker Image in your Docker Hub repository.
-
-   ```
-   docker tag alpine-kubectl:1.0 "yourUsername"/alpine-kubectl:1.0
+   docker tag alpine-kubectl:1.0 "$yourUsername"/alpine-kubectl:1.0
    docker push "yourUsername"/alpine-kubectl:1.0
    ```
 
-Note: If you want you can use the pre-builded docker image located in DockerHub repo: bsantacruz/alpine-kubectl
+   _Don't forget to change "$yourUsername" parameter_
+
+**Note:** If you want you can use the pre-builded docker image located in DockerHub repo: **bsantacruz/alpine-kubectl**
 
 ## Deploying Updater into K8S Cluster
 
-**Disclaimer: Take into account that CronJob schedule is given in UTC time, adjust that parameter**
+Before deploy the resources you need to modify it with your own values
 
-1. Connect to your cluster and create the RBAC resources needed to interact with daemonsets in 'twistlock' namespace.
+- **Disclaimer 1:** Open the file `./yaml/RBAC.yaml` & don't forget to change **data.AK** & **data.SK** for your own Prisma Cloud base64 encoded credentials in Secret resource.
+
+- **Disclaimer 2:** Open `./scripts/DefenderUpdater.sh` file and set the variables **AK, SK, API_URL, DAEMONSET_NAME & CONTAINER_NAME, NAMESPACE** with your own values, copy entire content.
+
+- **Disclaimer 3:** Open `./yaml/ConfigMap.yaml` file and replace ConfigMap data section with the content copied above, don't forget to adjust the indentation.
+
+- **Disclaimer 4:** Open the `./yaml/CronJob.yaml` file and modify parameters like _'spec.schedule_ (in UTC time) and any others you requires.
+
+1. Connect to your cluster and create the RBAC & Secret resources needed to interact with daemonsets in 'twistlock' namespace.
 
    ```
+   cd yaml
+   # Create RBAC & Secret resources:
    kubectl create -f RBAC.yaml -n twistlock
-   ```
-
-2. Verify that Service Account has correct permissions to interact with daemonsets.
-
-   ```
+   # Verify Service Account permissions:
    kubectl auth can-i --as=system:serviceaccount:twistlock:defender-updater-sa get daemonsets.apps -n twistlock
    ```
 
-3. Create the ConfigMap resource, this contains data script to execute by the Cronjob.
+2. Create the ConfigMap resource, this contains data script to be executed by the Cronjob.
 
-- Open `./DefenderUpdater.sh` file and set the variables DAEMONSET_NAME & CONTAINER_NAME with your values (first command below), copy all content file.
-- Replace ConfigMap data section with the content copied above, adjust the format.
-- To avoid error give execution permissions to `./DefenderUpdater.sh` script file.
+   ```
+   # Create ConfigMap resource:
+   kubectl create -f ConfigMap.yaml -n twistlock
+   # Alternative you can use imperative command to create ConfigMap:
+   kubectl create configmap defender-updater-script-configmap --from-file=data/DefenderUpdater.sh
+   ```
 
-  ```
-  # Find defender resources created in twistlock namespace:
-  kubectl get all -n twistlock
-  # Give execution permissions:
-  sudo chmod +x DefenderUpdater.sh
-  # Create ConfigMap from yaml template:
-  kubectl create -f ConfigMap.yaml -n twistlock
-  # Alternative you can use imperative command to create ConfigMap:
-  kubectl create configmap defender-updater-script-configmap --from-file=DefenderUpdater.sh
-  ```
+3. Modify & create the CronJob resource.
 
-4. Modify & create the CronJob resource.
+   ```
+   kubectl create -f CronJob.yaml -n twistlock
+   ```
 
-- Open the `./CronJob.yaml` file and modify parameters like _'spec.schedule, .spec.containers.image and any others you requires'_
-
-  ```
-  kubectl create -f CronJob.yaml -n twistlock
-  ```
-
-5. If you want to test manually the CronJob without wait to schedule, you can create a Job.
+4. If you want to test manually the CronJob without wait the schedule time, you can create a Job (Optional).
 
    ```
    kubectl create job --from=cronjob/defender-updater defender-updater-job -n twistlock
    ```
 
-6. To monitor & view logs of the executions you can locate the job and view status which must be "completed"
+## Viewing results & logs
+
+1. To monitor & view logs of the executions you can locate the job and view status which must be "completed"
 
    ```
    # Review completions and status respectively:
    kubectl get jobs -n twistlock
    kubectl get pods -n twistlock
-
    # Locate the job pod with prefix 'defender-updater-job-xxxxx' and review it:
-   kubectl describe pod defender-updater-job -n twistlock
-
-   # Review events for CronJob:
-   kubectl describe cronjob defender-updater -n twistlock
+   kubectl describe pod defender-updater-job-xxxxx -n twistlock
    ```
 
-7. To view events associated to CronJob.
+2. To view events associated to CronJob.
 
    ```
    kubectl describe cronjob defender-updater -n twistlock
@@ -120,7 +133,7 @@ Note: If you want you can use the pre-builded docker image located in DockerHub 
 
    **Note: By default there are 3 successful Job executions & 1 failed Job execution maintained in history.**
 
-8. To view defender daemonset annotations & events. Take into account that daemonset has **'kubernetes.io/change-cause'** annotation with time of execution.
+3. To view defender daemonset annotations & events. Take into account that daemonset has **'kubernetes.io/change-cause'** annotation with time of execution.
 
    ```
    kubectl describe daemonset twistlock-defender-ds -n twistlock
