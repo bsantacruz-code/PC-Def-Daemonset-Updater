@@ -141,4 +141,4 @@ Before deploy the resources you need to modify it with your own values
 
 ### ¡Be careful if you change resources names & content of scripts!
 
-Created & maintained by @bsantacruz-code for Netdata Colombia SAS 🖤
+Created & maintained by [@bsantacruz-code](https://github.com/bsantacruz-code) for Netdata Colombia SAS 🖤
