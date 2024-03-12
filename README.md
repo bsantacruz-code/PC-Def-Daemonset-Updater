@@ -1,4 +1,4 @@
-# PC-Def-Daemonset-Updater 💡
+# Prisma Cloud Defender Daemonset Updater 💡
 
 A project to provide a solution to update automatically the Prisma Cloud Daemonset Defender without need to share your kubeconfig file.
 
