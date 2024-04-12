@@ -9,21 +9,21 @@ kind: Role
 metadata:
   name: defender-updater-role
 rules:
-  - apiGroups: ["apps"]
-    resources: ["daemonsets"]
-    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
-  - apiGroups: [""]
-    resources: ["secrets"]
-    verbs: ["get", "list"]
+- apiGroups: ["apps"]
+  resources: ["daemonsets"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get", "list"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: defender-updater-rolebinding
 subjects:
-  - kind: ServiceAccount
-    name: defender-updater-sa
-    namespace: twistlock
+- kind: ServiceAccount
+  name: defender-updater-sa
+  namespace: twistlock
 roleRef:
   kind: Role
   name: defender-updater-role

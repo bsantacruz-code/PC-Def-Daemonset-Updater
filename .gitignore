@@ -3,3 +3,4 @@ daemonset*.yaml
 *.py
 *.drawio.*
 .DS_Store
+*.pdf
